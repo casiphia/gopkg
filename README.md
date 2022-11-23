@@ -1,2 +1,0 @@
-# gopkg
-golang generic toolkit
