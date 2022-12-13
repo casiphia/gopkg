@@ -239,6 +239,7 @@ const (
 	tagNameQuery      = "query"
 	tagNamePath       = "path"
 	tagNameForm       = "form"
+	tagNameJson       = "json"
 	tagNameHeader     = "header"
 	tagNameCookie     = "cookie"
 	tagOptionRequired = "required"
@@ -277,6 +278,8 @@ func makeParamByTag(tag, name, value string) IParam {
 		return NewURLSegmentParam(name, value, "")
 	case tagNameForm:
 		return NewFormDataParam(name, value)
+	case tagNameJson:
+		return NewJSONBody(name, value)
 	case tagNameHeader:
 		return NewHeaderParam(name, value)
 	case tagNameCookie:
