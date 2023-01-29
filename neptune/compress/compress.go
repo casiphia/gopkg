@@ -31,10 +31,12 @@ func (s *_Snappy) CompressWithPrefix(src []byte, prefix []byte) []byte {
 	if srcSize == 0 {
 		return prefix
 	}
+
 	var prefixSize = len(prefix)
 	if prefixSize == 0 {
 		return s.Compress(src)
 	}
+
 	var totalSize = snappy.MaxEncodedLen(srcSize) + prefixSize
 	var totalBuf = make([]byte, totalSize)
 	copy(totalBuf[:prefixSize], prefix)
@@ -44,10 +46,10 @@ func (s *_Snappy) CompressWithPrefix(src []byte, prefix []byte) []byte {
 	if totalSize >= actualSize {
 		//enough
 		return totalBuf[:actualSize]
-	} else {
-		var extendBuf = make([]byte, actualSize)
-		copy(extendBuf[:prefixSize], prefix)
-		copy(extendBuf[prefixSize:], encBuf)
-		return extendBuf
 	}
+
+	var extendBuf = make([]byte, actualSize)
+	copy(extendBuf[:prefixSize], prefix)
+	copy(extendBuf[prefixSize:], encBuf)
+	return extendBuf
 }

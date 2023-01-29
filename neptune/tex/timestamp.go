@@ -6,8 +6,7 @@ import (
 	"time"
 )
 
-// UnixNano2Time
-// 纳秒时间戳时间
+// UnixNano2Time 纳秒时间戳时间
 type UnixNano2Time time.Time
 
 // Scan : sql scan
